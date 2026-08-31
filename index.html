@@ -1,0 +1,288 @@
+<title>OBS Recording Manager</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500&display=swap">
+<style>
+  :root {
+    --bg: #0e1016;
+    --surface: #1c1f2e;
+    --border: #2e3247;
+    --text: #e4e6f0;
+    --muted: #7c84c4;
+    --accent: #5c6bc0;
+    --accent-light: #8491e0;
+    --body-font: 'Inter', system-ui, sans-serif;
+    --display-font: 'Space Grotesk', system-ui, sans-serif;
+  }
+  @media (prefers-color-scheme: light) {
+    :root:not([data-theme="dark"]) {
+      --bg: #f2f3f8;
+      --surface: #ffffff;
+      --border: #dde0f0;
+      --text: #1a1d2e;
+      --muted: #5a6090;
+      --accent: #4a5ab8;
+      --accent-light: #6070cc;
+    }
+  }
+  :root[data-theme="light"] {
+    --bg: #f2f3f8;
+    --surface: #ffffff;
+    --border: #dde0f0;
+    --text: #1a1d2e;
+    --muted: #5a6090;
+    --accent: #4a5ab8;
+    --accent-light: #6070cc;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: var(--body-font);
+    background: var(--bg);
+    color: var(--text);
+    font-size: 16px;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  nav {
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 56px;
+    background: var(--surface);
+  }
+  .nav-brand {
+    font-family: var(--display-font);
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--text);
+    text-decoration: none;
+    letter-spacing: -0.01em;
+  }
+  .nav-links { display: flex; gap: 0.25rem; }
+  .nav-links a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.875rem;
+    padding: 0.4rem 0.75rem;
+    border-radius: 6px;
+    transition: color 0.15s, background 0.15s;
+  }
+  .nav-links a:hover { color: var(--text); background: var(--border); }
+  .nav-links a.active { color: var(--text); }
+
+  main {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 5rem 2rem 4rem;
+  }
+
+  .badge {
+    display: inline-block;
+    font-family: var(--display-font);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent-light);
+    border: 1px solid var(--border);
+    padding: 0.25rem 0.65rem;
+    border-radius: 100px;
+    margin-bottom: 1.5rem;
+  }
+
+  h1 {
+    font-family: var(--display-font);
+    font-size: clamp(2.2rem, 5vw, 3rem);
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.03em;
+    text-wrap: balance;
+    margin-bottom: 1.25rem;
+    color: var(--text);
+  }
+
+  .subtitle {
+    font-size: 1.1rem;
+    color: var(--muted);
+    max-width: 520px;
+    margin-bottom: 2.5rem;
+    line-height: 1.65;
+  }
+
+  .actions { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 4rem; }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.65rem 1.25rem;
+    border-radius: 8px;
+    font-family: var(--display-font);
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: opacity 0.15s, transform 0.1s;
+    cursor: pointer;
+  }
+  .btn:hover { opacity: 0.85; transform: translateY(-1px); }
+  .btn-primary { background: var(--accent); color: #fff; }
+  .btn-secondary { background: var(--surface); color: var(--text); border: 1px solid var(--border); }
+
+  .divider { border: none; border-top: 1px solid var(--border); margin: 3rem 0; }
+
+  h2 {
+    font-family: var(--display-font);
+    font-size: 1.1rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: var(--text);
+    margin-bottom: 1.25rem;
+  }
+
+  .features {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 3rem;
+  }
+  @media (max-width: 520px) { .features { grid-template-columns: 1fr; } }
+
+  .feature {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.25rem;
+  }
+  .feature-icon {
+    font-size: 1.25rem;
+    margin-bottom: 0.6rem;
+    display: block;
+  }
+  .feature-title {
+    font-family: var(--display-font);
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 0.35rem;
+  }
+  .feature-desc {
+    font-size: 0.8rem;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  .install {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.5rem;
+  }
+  .install ol {
+    padding-left: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+  .install li { font-size: 0.9rem; color: var(--muted); }
+  .install li strong { color: var(--text); }
+  code {
+    font-size: 0.8rem;
+    background: var(--border);
+    padding: 0.15rem 0.4rem;
+    border-radius: 4px;
+    font-family: 'JetBrains Mono', 'Fira Code', monospace;
+    color: var(--accent-light);
+  }
+
+  .compat {
+    font-size: 0.85rem;
+    color: var(--muted);
+    margin-top: 1.25rem;
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+  .compat span { display: flex; align-items: center; gap: 0.35rem; }
+  .dot { width: 6px; height: 6px; border-radius: 50%; background: #4caf7d; display: inline-block; }
+
+  footer {
+    text-align: center;
+    padding: 2rem;
+    font-size: 0.8rem;
+    color: var(--muted);
+    border-top: 1px solid var(--border);
+  }
+  footer a { color: var(--muted); text-decoration: none; }
+  footer a:hover { color: var(--text); }
+</style>
+
+<nav>
+  <a class="nav-brand" href="index.html">OBS Recording Manager</a>
+  <div class="nav-links">
+    <a href="index.html" class="active">Accueil</a>
+    <a href="privacy.html">Confidentialite</a>
+    <a href="terms.html">Conditions</a>
+  </div>
+</nav>
+
+<main>
+  <span class="badge">Plugin OBS Studio</span>
+  <h1>Gerez vos enregistrements sans quitter OBS</h1>
+  <p class="subtitle">
+    Apres chaque enregistrement, choisissez de garder, supprimer ou envoyer automatiquement vers Google Drive. Interface entierement en francais.
+  </p>
+  <div class="actions">
+    <a class="btn btn-primary" href="https://github.com/JaysonPasquier/obs-recording-manager/releases/latest">Telecharger le plugin</a>
+    <a class="btn btn-secondary" href="https://github.com/JaysonPasquier/obs-recording-manager">Voir sur GitHub</a>
+  </div>
+
+  <h2>Fonctionnalites</h2>
+  <div class="features">
+    <div class="feature">
+      <span class="feature-icon">💬</span>
+      <div class="feature-title">Dialogue apres enregistrement</div>
+      <div class="feature-desc">Garder, supprimer ou decider plus tard - un choix clair a chaque fois.</div>
+    </div>
+    <div class="feature">
+      <span class="feature-icon">🗑️</span>
+      <div class="feature-title">Trois modes de suppression</div>
+      <div class="feature-desc">Corbeille Windows, dossier temporaire avec delai, ou suppression immediate.</div>
+    </div>
+    <div class="feature">
+      <span class="feature-icon">↩️</span>
+      <div class="feature-title">Annulation rapide</div>
+      <div class="feature-desc">Toast de 10 secondes apres une suppression pour annuler si besoin.</div>
+    </div>
+    <div class="feature">
+      <span class="feature-icon">☁️</span>
+      <div class="feature-title">Envoi vers Google Drive</div>
+      <div class="feature-desc">Connexion OAuth securisee, choix du dossier de destination.</div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <h2>Installation</h2>
+  <div class="install">
+    <ol>
+      <li><strong>Telechargez</strong> le fichier <code>obs-recording-manager.dll</code> depuis les Releases</li>
+      <li><strong>Copiez-le</strong> dans <code>C:\Program Files\obs-studio\obs-plugins\64bit\</code></li>
+      <li><strong>Redemarrez</strong> OBS Studio</li>
+      <li>Acces via <strong>Outils &gt; Recording Manager...</strong></li>
+    </ol>
+    <div class="compat">
+      <span><span class="dot"></span> OBS Studio 32.x</span>
+      <span><span class="dot"></span> Windows 10 / 11</span>
+      <span><span class="dot"></span> 64 bits</span>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <a href="privacy.html">Confidentialite</a> &nbsp;&middot;&nbsp;
+  <a href="terms.html">Conditions d'utilisation</a> &nbsp;&middot;&nbsp;
+  <a href="https://github.com/JaysonPasquier/obs-recording-manager">GitHub</a>
+</footer>

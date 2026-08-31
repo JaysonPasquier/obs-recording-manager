@@ -1,0 +1,118 @@
+<title>Conditions d'utilisation - OBS Recording Manager</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500&display=swap">
+<style>
+  :root {
+    --bg: #0e1016; --surface: #1c1f2e; --border: #2e3247;
+    --text: #e4e6f0; --muted: #7c84c4; --accent: #5c6bc0; --accent-light: #8491e0;
+    --body-font: 'Inter', system-ui, sans-serif;
+    --display-font: 'Space Grotesk', system-ui, sans-serif;
+  }
+  @media (prefers-color-scheme: light) {
+    :root:not([data-theme="dark"]) {
+      --bg: #f2f3f8; --surface: #ffffff; --border: #dde0f0;
+      --text: #1a1d2e; --muted: #5a6090; --accent: #4a5ab8; --accent-light: #6070cc;
+    }
+  }
+  :root[data-theme="light"] {
+    --bg: #f2f3f8; --surface: #ffffff; --border: #dde0f0;
+    --text: #1a1d2e; --muted: #5a6090; --accent: #4a5ab8; --accent-light: #6070cc;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: var(--body-font); background: var(--bg); color: var(--text); font-size: 16px; line-height: 1.7; min-height: 100vh; }
+
+  nav {
+    border-bottom: 1px solid var(--border); padding: 0 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 56px; background: var(--surface);
+  }
+  .nav-brand { font-family: var(--display-font); font-weight: 600; font-size: 0.95rem; color: var(--text); text-decoration: none; }
+  .nav-links { display: flex; gap: 0.25rem; }
+  .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.875rem; padding: 0.4rem 0.75rem; border-radius: 6px; transition: color 0.15s, background 0.15s; }
+  .nav-links a:hover { color: var(--text); background: var(--border); }
+  .nav-links a.active { color: var(--text); }
+
+  main { max-width: 680px; margin: 0 auto; padding: 4rem 2rem; }
+
+  .page-label {
+    font-family: var(--display-font); font-size: 0.7rem; font-weight: 600;
+    letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent-light);
+    margin-bottom: 0.75rem; display: block;
+  }
+  h1 { font-family: var(--display-font); font-size: 2rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 0.5rem; text-wrap: balance; }
+  .meta { font-size: 0.85rem; color: var(--muted); margin-bottom: 3rem; }
+
+  section { margin-bottom: 2.25rem; }
+  h2 { font-family: var(--display-font); font-size: 1rem; font-weight: 600; color: var(--text); margin-bottom: 0.75rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border); }
+  p { font-size: 0.9rem; color: var(--muted); margin-bottom: 0.75rem; }
+  p:last-child { margin-bottom: 0; }
+  ul { padding-left: 1.25rem; display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 0.75rem; }
+  li { font-size: 0.9rem; color: var(--muted); }
+  strong { color: var(--text); font-weight: 500; }
+  a { color: var(--accent-light); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  footer { text-align: center; padding: 2rem; font-size: 0.8rem; color: var(--muted); border-top: 1px solid var(--border); }
+  footer a { color: var(--muted); text-decoration: none; }
+  footer a:hover { color: var(--text); }
+</style>
+
+<nav>
+  <a class="nav-brand" href="index.html">OBS Recording Manager</a>
+  <div class="nav-links">
+    <a href="index.html">Accueil</a>
+    <a href="privacy.html">Confidentialite</a>
+    <a href="terms.html" class="active">Conditions</a>
+  </div>
+</nav>
+
+<main>
+  <span class="page-label">Conditions d'utilisation</span>
+  <h1>Conditions d'utilisation</h1>
+  <p class="meta">Derniere mise a jour : 31 aout 2026</p>
+
+  <section>
+    <h2>1. Acceptation</h2>
+    <p>En utilisant OBS Recording Manager, vous acceptez ces conditions d'utilisation. Si vous n'acceptez pas, ne telechargez pas et n'utilisez pas ce plugin.</p>
+  </section>
+
+  <section>
+    <h2>2. Utilisation du plugin</h2>
+    <p>OBS Recording Manager est fourni gratuitement pour un usage personnel et professionnel. Vous etes libre de :</p>
+    <ul>
+      <li>L'utiliser sur autant de machines que vous le souhaitez</li>
+      <li>Le modifier et le redistribuer sous les termes de la licence MIT</li>
+      <li>L'integrer dans d'autres projets open source</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>3. Limitation de responsabilite</h2>
+    <p>Le plugin est fourni <strong>tel quel</strong>, sans garantie d'aucune sorte. L'auteur ne peut etre tenu responsable de :</p>
+    <ul>
+      <li>La perte accidentelle de fichiers d'enregistrement (utilisez toujours le mode corbeille ou dossier temporaire si vous n'etes pas sur)</li>
+      <li>Les interruptions du service Google Drive</li>
+      <li>Tout dommage indirect lie a l'utilisation du plugin</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>4. Google Drive</h2>
+    <p>L'utilisation de la fonctionnalite Google Drive est soumise aux <a href="https://policies.google.com/terms">Conditions d'utilisation de Google</a> et a la <a href="https://policies.google.com/privacy">Politique de confidentialite de Google</a>.</p>
+  </section>
+
+  <section>
+    <h2>5. Licence</h2>
+    <p>OBS Recording Manager est distribue sous licence <strong>MIT</strong>. Vous pouvez consulter le texte complet sur le <a href="https://github.com/JaysonPasquier/obs-recording-manager">depot GitHub</a>.</p>
+  </section>
+
+  <section>
+    <h2>6. Contact</h2>
+    <p>Pour toute question : <strong>chardclouzi@gmail.com</strong></p>
+  </section>
+</main>
+
+<footer>
+  <a href="privacy.html">Confidentialite</a> &nbsp;&middot;&nbsp;
+  <a href="terms.html">Conditions d'utilisation</a> &nbsp;&middot;&nbsp;
+  <a href="https://github.com/JaysonPasquier/obs-recording-manager">GitHub</a>
+</footer>
